@@ -1,7 +1,5 @@
 <template>
-  displayFilters: {{ displayFilters }},
-  checkedCategories: {{ checkedCategories }},
-  search: {{ search }}
+  <h1>Filters</h1>
   <BaseFilters
     :categories="categoriesTree"
     :displayFilterOptions="displayFilterOptions"

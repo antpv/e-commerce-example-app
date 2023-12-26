@@ -5,21 +5,38 @@
       :options="displayFilterOptions"
       :selectedKeys="activeDisplayFilters"
       @select="toggleDisplayFilter"
+      class="filters__filter"
     />
     <!-- TREE FILTER -->
-    <template v-if="activeDisplayFilters.includes('tree')">
+    <div 
+      class="filters__filter"
+      v-if="activeDisplayFilters.includes('tree')"
+    >
       <BaseCategoryFilter
         :tree="categories"
         :checkedCategories="checkedCategories"
         @changeCheckedCategories="(payload: string[]) => $emit('update:checkedCategories', payload)"
       />
-      <span @click="cancelFilter('tree')">[x]</span>
-    </template>
+      <span
+        @click="cancelFilter('tree')"
+        class="filters__close"
+      >
+        <img src="../assets/close.svg" />
+      </span>
+    </div>
     <!-- SEARCH FILTER -->
-    <template v-if="activeDisplayFilters.includes('search')">
+    <div
+      class="filters__filter"
+      v-if="activeDisplayFilters.includes('search')"
+    >
       <input :value="search" @input="handleSearch" />
-      <span @click="cancelFilter('search')">[x]</span>
-    </template>
+      <span
+        @click="cancelFilter('search')"
+        class="filters__close"
+      >
+        <img src="../assets/close.svg" />
+      </span>
+    </div>
   </div>
 </template>
 
@@ -95,6 +112,11 @@ export enum AllowedFilters {
     cancelFilter(key: string) {
       this.activeDisplayFilters = this.activeDisplayFilters.filter((activeKey: string) => activeKey !== key)
       this.$emit('update:displayFilters', this.activeDisplayFilters)
+      if (key === 'tree') {
+        this.$emit('update:checkedCategories', [])
+      } else if (key === 'search') {
+        this.$emit('update:search', '')
+      }
     }
   }
 })
@@ -111,3 +133,28 @@ export default class BaseFilters extends Vue {
   cancelFilter!: (key: string) => void
 }
 </script>
+
+<style lang="scss">
+.filters {
+  padding: 12px 0;
+  &__close {
+    border: 1px solid #A9A9A9;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 0;
+    margin-left: 12px;
+    cursor: pointer;
+    & * {
+      pointer-events: none;
+    }
+  }
+  &__filter {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+</style>
