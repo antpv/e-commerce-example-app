@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "name": "Furniture",
+      "categories": [
+        {
+          "name": "Sofas",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "name": "Electronics",
+      "categories": [
+        {
+          "name": "Mobile phones",
+          "categories": []
+        },
+        {
+          "name": "Photo, Video",
+          "categories": [
+            {
+              "name": "Digital cameras",
+              "categories": []
+            },
+            {
+              "name": "Accessoaries",
+              "categories": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "product": "Gran sofa",
+      "category": [
+        "Furniture",
+        "Sofas"
+      ]
+    },
+    {
+      "product": "SLR Camera D200",
+      "category": [
+        "Electronics",
+        "Photo, Video",
+        "Digital cameras"
+      ]
+    }
+  ]
+}
